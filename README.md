@@ -1,5 +1,5 @@
 # Map
-
+[![Build Status](https://travis-ci.org/wookieb/map.png?branch=master)](https://travis-ci.org/wookieb/map)
 Implementation of map data type for PHP. Allows to use non-scalar keys like objects, arrays.
 
 ## Install
