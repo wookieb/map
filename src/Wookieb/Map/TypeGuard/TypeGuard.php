@@ -63,21 +63,17 @@ class TypeGuard implements TypeGuardInterface
     }
 
     /**
-     * Returns type name of desired value
+     * Returns string that describes what kind of types are allowed
+     *
      * @return string
      */
-    public function getTypeName()
+    public function getAllowedTypeString()
     {
-        return $this->type;
+        if ($this->type !== 'object') {
+            return $this->type.'s';
+        }
+        return 'objects of class '.$this->typeClass;
     }
 
-    /**
-     * Returns class name of desired value
-     *
-     * @return string null if desired value is not an object
-     */
-    public function getTypeClass()
-    {
-        return $this->typeClass;
-    }
+
 }

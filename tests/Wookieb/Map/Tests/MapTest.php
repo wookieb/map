@@ -2,7 +2,6 @@
 
 namespace Wookieb\Map\Tests;
 
-use Wookieb\Map\Exception\EntryNotFoundException;
 use Wookieb\Map\Map;
 use Wookieb\Map\MapEntry;
 
@@ -99,6 +98,7 @@ class MapTest extends CommonMapTests
         $iterationCount = 0;
         reset($entries);
         foreach ($this->object as $key => $entry) {
+            /* @var MapEntry $entry */
             $expectedPair = current($entries);
             $this->assertSame($iterationCount, $key, 'Invalid key');
             $this->assertInstanceOf('Wookieb\Map\MapEntry', $entry);

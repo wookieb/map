@@ -1,7 +1,6 @@
 <?php
 
 namespace Wookieb\Map;
-use Wookieb\Assert\Assert;
 use Wookieb\Map\Exception\EntryNotFoundException;
 
 /**

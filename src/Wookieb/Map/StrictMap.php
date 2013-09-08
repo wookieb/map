@@ -19,7 +19,6 @@ class StrictMap extends Map
      * @var TypeGuardInterface
      */
     private $valueType;
-    private $hasDefinedTypes = false;
 
     public function __construct(TypeGuardInterface $keyType, TypeGuardInterface $valueType, $useMapEntries = null)
     {
@@ -43,17 +42,44 @@ class StrictMap extends Map
 
     private function createExceptionMessage($prefix, TypeGuardInterface $guard)
     {
-        return $prefix.'Only '.($guard->getTypeName() === 'object' ? 'object of class "'.$guard->getTypeClass().'"'
-            : $guard->getTypeName().'s').' allowed';
+        return $prefix.'Allowed types of data: '.$guard->getAllowedTypeString();
     }
 
+    /**
+     * Checks whether given value is a valid map key
+     *
+     * @param mixed $key
+     * @return boolean
+     */
     public function isValidKey($key)
     {
         return $this->keyType->isValid($key);
     }
 
+    /**
+     * Checks whether given value is a valid map value
+     *
+     * @param mixed $value
+     * @return boolean
+     */
     public function isValidValue($value)
     {
         return $this->valueType->isValid($value);
+    }
+
+    /**
+     * @return TypeGuardInterface
+     */
+    public function getKeyType()
+    {
+        return $this->keyType;
+    }
+
+    /**
+     * @return TypeGuardInterface
+     */
+    public function getValueType()
+    {
+        return $this->valueType;
     }
 } 

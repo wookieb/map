@@ -2,12 +2,16 @@
 
 namespace Wookieb\Map\Tests;
 use Wookieb\Map\Exception\EntryNotFoundException;
+use Wookieb\Map\MapInterface;
 
 /**
  * @author Łukasz Kużyński "wookieb" <lukasz.kuzynski@gmail.com>
  */
 abstract class CommonMapTests extends MapUnit
 {
+    /**
+     * @var MapInterface
+     */
     protected $object;
 
 
@@ -104,7 +108,7 @@ abstract class CommonMapTests extends MapUnit
     public function testSearch()
     {
         $key = 'someKey';
-        $value = 'huehue';
+        $value = 'someValue';
         $this->assertNull($this->object->search($value));
         $this->object->add($key, $value);
         $this->assertSame($key, $this->object->search($value));

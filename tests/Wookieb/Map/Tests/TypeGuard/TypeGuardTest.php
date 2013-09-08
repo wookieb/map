@@ -4,39 +4,10 @@ namespace Wookieb\Map\Tests\TypeGuard;
 
 
 use Wookieb\Map\TypeGuard\TypeGuard;
+use Wookieb\Map\TypeGuard\TypeGuardInterface;
 
 class TypeGuardTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetTypeName()
-    {
-        $object = new TypeGuard('string');
-        $this->assertSame('string', $object->getTypeName());
-    }
-
-    public function testSomeTypeNamesCouldBeAliased()
-    {
-        $object = new TypeGuard('int');
-        $this->assertSame('integer', $object->getTypeName());
-
-        $object = new TypeGuard('bool');
-        $this->assertSame('boolean', $object->getTypeName());
-    }
-
-    public function testTypeNamesAreCaseInsensitive()
-    {
-        $object = new TypeGuard('StRiNg');
-        $this->assertSame('string', $object->getTypeName());
-    }
-
-    public function testGetTypeClass()
-    {
-        $object = new TypeGuard('object', 'stdClass');
-        $this->assertSame('object', $object->getTypeName());
-        $this->assertSame('stdClass', $object->getTypeClass());
-
-        $object = new TypeGuard('string');
-        $this->assertNull($object->getTypeClass());
-    }
 
     public function testCannotLeaveClassNameEmptyForObjectTypes()
     {
@@ -80,9 +51,28 @@ class TypeGuardTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider commonProvider
      */
-    public function testIsValid($validValue, TypeGuard $typeGuard, $invalidValue)
+    public function testIsValid($validValue, TypeGuardInterface $typeGuard, $invalidValue)
     {
         $this->assertTrue($typeGuard->isValid($validValue));
         $this->assertFalse($typeGuard->isValid($invalidValue));
+    }
+
+    public function getAllowedTypesStringProvider()
+    {
+        return array(
+            'strings' => array(new TypeGuard('string'), 'strings'),
+            'integers' => array(new TypeGuard('int'), 'integers'),
+            'doubles' => array(new TypeGuard('double'), 'doubles'),
+            'booleans' => array(new TypeGuard('boolean'), 'booleans'),
+            'objects' => array(new TypeGuard('object', 'stdClass'), 'objects of class stdClass')
+        );
+    }
+
+    /**
+     * @dataProvider getAllowedTypesStringProvider
+     */
+    public function testGetAllowedTypesString(TypeGuardInterface $guard, $expected)
+    {
+        $this->assertSame($expected, $guard->getAllowedTypeString());
     }
 }

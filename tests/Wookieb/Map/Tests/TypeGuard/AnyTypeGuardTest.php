@@ -29,10 +29,9 @@ class AnyTypeGuardTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($object->isValid($value));
     }
 
-    public function testTypesNames()
+    public function testGetAllowedTypesString()
     {
         $object = new AnyTypeGuard();
-        $this->assertSame('any', $object->getTypeName());
-        $this->assertSame('any', $object->getTypeClass());
+        $this->assertSame('every type', $object->getAllowedTypeString());
     }
 }

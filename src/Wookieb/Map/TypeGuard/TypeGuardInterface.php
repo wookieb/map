@@ -7,9 +7,18 @@ namespace Wookieb\Map\TypeGuard;
  */
 interface TypeGuardInterface
 {
+    /**
+     * Checks whether given value has correct type
+     *
+     * @param mixed $value
+     * @return boolean
+     */
     function isValid($value);
 
-    function getTypeName();
-
-    function getTypeClass();
+    /**
+     * Returns string that describes what kind of types are allowed
+     *
+     * @return string
+     */
+    function getAllowedTypeString();
 } 

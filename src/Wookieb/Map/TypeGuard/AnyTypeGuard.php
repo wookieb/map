@@ -3,22 +3,25 @@
 namespace Wookieb\Map\TypeGuard;
 
 /**
+ * Type guard that accepts every type of data
+ *
  * @author Łukasz Kużyński "wookieb" <lukasz.kuzynski@gmail.com>
  */
 class AnyTypeGuard implements TypeGuardInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function isValid($value)
     {
         return true;
     }
 
-    function getTypeName()
+    /**
+     * {@inheritDoc}
+     */
+    public function getAllowedTypeString()
     {
-        return 'any';
-    }
-
-    function getTypeClass()
-    {
-        return 'any';
+        return 'every type';
     }
 } 

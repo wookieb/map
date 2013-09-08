@@ -42,7 +42,7 @@ class StrictMapTest extends CommonMapTests
 
     public function testExceptionWhenAttemptToAddEntryWithInvalidKeyType()
     {
-        $msg = 'Invalid key type. Only strings allowed';
+        $msg = 'Invalid key type. Allowed types of data: strings';
         $this->setExpectedException('Wookieb\Map\Exception\InvalidKeyTypeException', $msg);
         try {
             $this->object->add(1, 'tip');
@@ -54,7 +54,7 @@ class StrictMapTest extends CommonMapTests
 
     public function testExceptionWhenAttemptToAddEntryWithInvalidValueType()
     {
-        $msg = 'Invalid value type. Only strings allowed';
+        $msg = 'Invalid value type. Allowed types of data: strings';
         $this->setExpectedException('Wookieb\Map\Exception\InvalidValueTypeException', $msg);
         try {
             $this->object->add('tip', 1);
@@ -68,5 +68,17 @@ class StrictMapTest extends CommonMapTests
     {
         $this->object = new StrictMap(new TypeGuard('string'), new TypeGuard('object', 'stdClass'));
         parent::testStrictSearch();
+    }
+
+    public function testGetKeyType()
+    {
+        $expected = new TypeGuard('string');
+        $this->assertEquals($expected, $this->object->getKeyType());
+    }
+
+    public function testGetValueType()
+    {
+        $expected = new TypeGuard('string');
+        $this->assertEquals($expected, $this->object->getValueType());
     }
 }
