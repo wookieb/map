@@ -6,6 +6,9 @@ use Wookieb\Map\Exception\InvalidValueTypeException;
 use Wookieb\Map\StrictMap;
 use Wookieb\Map\TypeGuard\TypeGuard;
 use Wookieb\Map\Exception\InvalidKeyTypeException;
+use Wookieb\TypeCheck\ObjectTypeCheck;
+use Wookieb\TypeCheck\SimpleTypeCheck;
+use Wookieb\TypeCheck\TypeCheck;
 
 class StrictMapTest extends CommonMapTests
 {
@@ -16,7 +19,7 @@ class StrictMapTest extends CommonMapTests
 
     protected function setUp()
     {
-        $this->object = new StrictMap(new TypeGuard('string'), new TypeGuard('string'));
+        $this->object = new StrictMap(TypeCheck::strings(), TypeCheck::strings());
     }
 
     public function testIsValidKey()
@@ -66,19 +69,19 @@ class StrictMapTest extends CommonMapTests
 
     public function testStrictSearch()
     {
-        $this->object = new StrictMap(new TypeGuard('string'), new TypeGuard('object', 'stdClass'));
+        $this->object = new StrictMap(TypeCheck::strings(), new ObjectTypeCheck('\stdClass'));
         parent::testStrictSearch();
     }
 
     public function testGetKeyType()
     {
-        $expected = new TypeGuard('string');
+        $expected = TypeCheck::strings();
         $this->assertEquals($expected, $this->object->getKeyType());
     }
 
     public function testGetValueType()
     {
-        $expected = new TypeGuard('string');
+        $expected = TypeCheck::strings();
         $this->assertEquals($expected, $this->object->getValueType());
     }
 }

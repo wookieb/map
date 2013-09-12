@@ -3,8 +3,8 @@
 namespace Wookieb\Map;
 use Wookieb\Map\Exception\InvalidKeyTypeException;
 use Wookieb\Map\Exception\InvalidValueTypeException;
-use Wookieb\Map\TypeGuard\TypeGuardInterface;
-use Wookieb\Map\TypeGuard\TypeGuard;
+use Wookieb\TypeCheck\TypeCheck;
+use Wookieb\TypeCheck\TypeCheckInterface;
 
 /**
  * @author Łukasz Kużyński "wookieb" <lukasz.kuzynski@gmail.com>
@@ -12,15 +12,15 @@ use Wookieb\Map\TypeGuard\TypeGuard;
 class StrictMap extends Map
 {
     /**
-     * @var TypeGuardInterface
+     * @var TypeCheckInterface
      */
     private $keyType;
     /**
-     * @var TypeGuardInterface
+     * @var TypeCheckInterface
      */
     private $valueType;
 
-    public function __construct(TypeGuardInterface $keyType, TypeGuardInterface $valueType, $useMapEntries = null)
+    public function __construct(TypeCheckInterface $keyType, TypeCheckInterface $valueType, $useMapEntries = null)
     {
         $this->keyType = $keyType;
         $this->valueType = $valueType;
@@ -29,20 +29,20 @@ class StrictMap extends Map
 
     public function add($key, $value)
     {
-        if (!$this->keyType->isValid($key)) {
+        if (!$this->keyType->isValidType($key)) {
             $msg = $this->createExceptionMessage('Invalid key type. ', $this->keyType);
             throw new InvalidKeyTypeException($msg, $key);
         }
-        if (!$this->valueType->isValid($value)) {
+        if (!$this->valueType->isValidType($value)) {
             $msg = $this->createExceptionMessage('Invalid value type. ', $this->valueType);
             throw new InvalidValueTypeException($msg, $value);
         }
         parent::add($key, $value);
     }
 
-    private function createExceptionMessage($prefix, TypeGuardInterface $guard)
+    private function createExceptionMessage($prefix, TypeCheckInterface $typeCheck)
     {
-        return $prefix.'Allowed types of data: '.$guard->getAllowedTypeString();
+        return $prefix.'Allowed types of data: '.$typeCheck->getTypeDescription();
     }
 
     /**
@@ -53,7 +53,7 @@ class StrictMap extends Map
      */
     public function isValidKey($key)
     {
-        return $this->keyType->isValid($key);
+        return $this->keyType->isValidType($key);
     }
 
     /**
@@ -64,11 +64,11 @@ class StrictMap extends Map
      */
     public function isValidValue($value)
     {
-        return $this->valueType->isValid($value);
+        return $this->valueType->isValidType($value);
     }
 
     /**
-     * @return TypeGuardInterface
+     * @return TypeCheckInterface
      */
     public function getKeyType()
     {
@@ -76,7 +76,7 @@ class StrictMap extends Map
     }
 
     /**
-     * @return TypeGuardInterface
+     * @return TypeCheckInterface
      */
     public function getValueType()
     {
