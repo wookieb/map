@@ -15,6 +15,7 @@ Via composer
 ## Example
 
 ```php
+use Wookieb\Map\Map;
 
 $map = new Map();
 
@@ -36,6 +37,8 @@ For php < 5.5 you will receive a MapEntry object instead of value of current ele
 For php >= 5.5 iteration works normally.
 
 ```php
+
+use Wookieb\Map\Map;
 
 $map = new Map();
 $map->add('yearly', 'ketchup');
