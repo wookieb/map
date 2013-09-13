@@ -68,6 +68,7 @@ class StrictMap extends Map
     }
 
     /**
+     * @deprecated
      * @return TypeCheckInterface
      */
     public function getKeyType()
@@ -76,9 +77,26 @@ class StrictMap extends Map
     }
 
     /**
+     * @deprecated
      * @return TypeCheckInterface
      */
     public function getValueType()
+    {
+        return $this->valueType;
+    }
+
+    /**
+     * @return TypeCheckInterface
+     */
+    public function getKeyTypeCheck()
+    {
+        return $this->keyType;
+    }
+
+    /**
+     * @return TypeCheckInterface
+     */
+    public function getValueTypeCheck()
     {
         return $this->valueType;
     }

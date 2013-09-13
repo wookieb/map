@@ -4,7 +4,6 @@ namespace Wookieb\Map\Tests;
 
 use Wookieb\Map\Exception\InvalidValueTypeException;
 use Wookieb\Map\StrictMap;
-use Wookieb\Map\TypeGuard\TypeGuard;
 use Wookieb\Map\Exception\InvalidKeyTypeException;
 use Wookieb\TypeCheck\ObjectTypeCheck;
 use Wookieb\TypeCheck\SimpleTypeCheck;
@@ -77,11 +76,13 @@ class StrictMapTest extends CommonMapTests
     {
         $expected = TypeCheck::strings();
         $this->assertEquals($expected, $this->object->getKeyType());
+        $this->assertEquals($expected, $this->object->getKeyTypeCheck());
     }
 
     public function testGetValueType()
     {
         $expected = TypeCheck::strings();
         $this->assertEquals($expected, $this->object->getValueType());
+        $this->assertEquals($expected, $this->object->getValueTypeCheck());
     }
 }

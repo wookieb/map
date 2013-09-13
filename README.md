@@ -69,3 +69,7 @@ foreach ($map as $entry) {
     list($key, $value) = $entry->get();
 }
 ```
+
+# Changelog
+## 0.1.1
+* added StrictMapTypeCheck
