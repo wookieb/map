@@ -1,6 +1,7 @@
 <?php
 
 namespace Wookieb\Map;
+
 use Wookieb\Map\Exception\EntryNotFoundException;
 
 /**
@@ -57,4 +58,11 @@ interface MapInterface extends \Iterator, \Countable
      * @return boolean
      */
     function isEmpty();
+
+    /**
+     * Informs if map is using map entries for iteration
+     *
+     * @return boolean
+     */
+    function isUsingMapEntries();
 } 

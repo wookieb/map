@@ -63,6 +63,7 @@ class MapTest extends CommonMapTests
             array(range(1, 10), rand(1, 10))
         );
 
+        $this->assertFalse($this->object->isUsingMapEntries());
         foreach ($entries as $entry) {
             $this->object->add($entry[0], $entry[1]);
         }
@@ -91,6 +92,8 @@ class MapTest extends CommonMapTests
         );
 
         $this->object = new Map(true);
+        $this->assertTrue($this->object->isUsingMapEntries());
+
         foreach ($entries as $entry) {
             $this->object->add($entry[0], $entry[1]);
         }

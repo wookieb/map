@@ -1,6 +1,7 @@
 <?php
 
 namespace Wookieb\Map;
+
 use Wookieb\Map\Exception\EntryNotFoundException;
 
 /**
@@ -154,9 +155,6 @@ class Map implements MapInterface
      */
     public function has($key)
     {
-        if ($key === null) {
-            return false;
-        }
         $storageKey = $this->computeStorageKey($key);
         $this->lastStorageKey = $storageKey;
         return isset($this->storage[$storageKey]);
@@ -180,5 +178,13 @@ class Map implements MapInterface
         $storageKey = $this->computeStorageKey($key);
         $this->storage[$storageKey] = array($key, $value);
         $this->counter++;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isUsingMapEntries()
+    {
+        return $this->useMapEntries;
     }
 } 

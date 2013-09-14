@@ -71,5 +71,9 @@ foreach ($map as $entry) {
 ```
 
 # Changelog
+
+## 0.1.2
+* added isUsingMapEntries method
+
 ## 0.1.1
 * added StrictMapTypeCheck
