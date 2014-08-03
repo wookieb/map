@@ -40,6 +40,7 @@ class Map implements MapInterface
                 var_export($key, true)
             ));
         }
+
         return new EntryNotFoundException($msg, $key);
     }
 
@@ -54,6 +55,7 @@ class Map implements MapInterface
         if ($this->useMapEntries) {
             return new MapEntry($current[0], $current[1]);
         }
+
         return $current[1];
     }
 
@@ -75,6 +77,7 @@ class Map implements MapInterface
             return $this->keyIndex;
         }
         $current = current($this->storage);
+
         return $current[0];
     }
 
@@ -105,7 +108,7 @@ class Map implements MapInterface
                 if ($value === $storageValue[1]) {
                     return $storageValue[0];
                 }
-            } else if ($value == $storageValue[1]) {
+            } elseif ($value == $storageValue[1]) {
                 return $storageValue[0];
             }
         }
@@ -119,6 +122,7 @@ class Map implements MapInterface
         if (!$this->has($key)) {
             throw $this->createEntryNotFoundException($key);
         }
+
         return $this->storage[$this->lastStorageKey][1];
     }
 
@@ -157,6 +161,7 @@ class Map implements MapInterface
     {
         $storageKey = $this->computeStorageKey($key);
         $this->lastStorageKey = $storageKey;
+
         return isset($this->storage[$storageKey]);
     }
 
@@ -164,9 +169,10 @@ class Map implements MapInterface
     {
         if (is_object($key)) {
             return spl_object_hash($key);
-        } else if (is_array($key)) {
+        } elseif (is_array($key)) {
             return md5(serialize($key));
         }
+
         return gettype($key).$key;
     }
 
@@ -187,4 +193,4 @@ class Map implements MapInterface
     {
         return $this->useMapEntries;
     }
-} 
+}

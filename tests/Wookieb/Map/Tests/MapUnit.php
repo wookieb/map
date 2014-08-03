@@ -26,4 +26,4 @@ class MapUnit extends \PHPUnit_Framework_TestCase
     {
         return version_compare(PHP_VERSION, '5.5', '>=');
     }
-} 
+}

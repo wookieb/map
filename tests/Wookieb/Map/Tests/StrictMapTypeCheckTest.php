@@ -25,6 +25,7 @@ class StrictMapTypeCheckTest extends MapUnit
 
         $fakeMap = new \stdClass();
         $fakeMap->key = 1;
+
         return array(
             'not a map' => array($fakeMap, false),
             'array' => array(array('foo' => 1), false),

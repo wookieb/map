@@ -35,4 +35,4 @@ class MapEntry
     {
         return array($this->key, $this->value);
     }
-} 
+}

@@ -6,7 +6,6 @@ use Wookieb\Map\Exception\InvalidValueTypeException;
 use Wookieb\Map\StrictMap;
 use Wookieb\Map\Exception\InvalidKeyTypeException;
 use Wookieb\TypeCheck\ObjectTypeCheck;
-use Wookieb\TypeCheck\SimpleTypeCheck;
 use Wookieb\TypeCheck\TypeCheck;
 
 class StrictMapTest extends CommonMapTests

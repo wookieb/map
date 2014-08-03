@@ -39,4 +39,4 @@ class StrictMapTypeCheck implements TypeCheckInterface
             $this->valueTypeCheck->getTypeDescription()
         ));
     }
-} 
+}

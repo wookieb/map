@@ -14,7 +14,6 @@ abstract class CommonMapTests extends MapUnit
      */
     protected $object;
 
-
     public function entryNotFoundProvider()
     {
         return array(
@@ -114,7 +113,6 @@ abstract class CommonMapTests extends MapUnit
         $this->assertSame($key, $this->object->search($value));
     }
 
-
     /**
      * @depends testSearch
      */
@@ -127,4 +125,4 @@ abstract class CommonMapTests extends MapUnit
         $this->assertNull($this->object->search(clone $value, true));
         $this->assertSame($key, $this->object->search($value, true));
     }
-} 
+}

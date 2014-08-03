@@ -10,8 +10,8 @@ abstract class KeyAwareException extends MapException
     private $key;
 
     /**
-     * @param string $message
-     * @param mixed $key
+     * @param string     $message
+     * @param mixed      $key
      * @param \Exception $previous
      */
     public function __construct($message, $key, \Exception $previous = null)
@@ -24,4 +24,4 @@ abstract class KeyAwareException extends MapException
     {
         return $this->key;
     }
-} 
+}
