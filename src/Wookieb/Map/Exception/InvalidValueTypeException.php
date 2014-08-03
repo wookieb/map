@@ -10,8 +10,8 @@ class InvalidValueTypeException extends MapException
     private $value;
 
     /**
-     * @param string $message
-     * @param mixed $value
+     * @param string     $message
+     * @param mixed      $value
      * @param \Exception $previous
      */
     public function __construct($message, $value, \Exception $previous = null)
@@ -24,4 +24,4 @@ class InvalidValueTypeException extends MapException
     {
         return $this->value;
     }
-} 
+}

@@ -8,4 +8,4 @@ namespace Wookieb\Map\Exception;
 class InvalidKeyTypeException extends KeyAwareException
 {
 
-} 
+}

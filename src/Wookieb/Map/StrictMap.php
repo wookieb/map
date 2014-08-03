@@ -48,7 +48,7 @@ class StrictMap extends Map
     /**
      * Checks whether given value is a valid map key
      *
-     * @param mixed $key
+     * @param  mixed   $key
      * @return boolean
      */
     public function isValidKey($key)
@@ -59,7 +59,7 @@ class StrictMap extends Map
     /**
      * Checks whether given value is a valid map value
      *
-     * @param mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValidValue($value)
@@ -100,4 +100,4 @@ class StrictMap extends Map
     {
         return $this->valueType;
     }
-} 
+}
